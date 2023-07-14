@@ -20,8 +20,6 @@ function App() {
   const [isBreak, setIsBreak] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  console.log();
-
   const changeBackgroundColor = (value: boolean) => {
     (document.querySelector(':root') as HTMLElement).style.backgroundColor = value ? (theme?.colors?.blue as RecursiveKeyValuePair<string, string>)["500"] as string : '#ba4949';
   }
