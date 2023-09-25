@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Pomodoro } from './components/Pomodoro';
 
-import './App.css'
+import './App.css';
 
-
-function App() {
-  return ( <Pomodoro /> )  
+function App(): JSX.Element {
+  return <Pomodoro />;
 }
 
-export default App
+export default App;
