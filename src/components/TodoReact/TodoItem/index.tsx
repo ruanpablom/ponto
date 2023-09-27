@@ -49,7 +49,7 @@ export const TodoItem = forwardRef<HTMLLIElement, TodoItemProps>(
 
     return (
       <li
-        className={`flex gap-2 p-2 w-full bg-white shadowButton rounded items-center line-through ${
+        className={`flex gap-2 p-2 w-full bg-white shadowButton rounded items-center ${
           todo.concluded
             ? `line-through ${decorationVariants[color]} opacity-75`
             : ''
