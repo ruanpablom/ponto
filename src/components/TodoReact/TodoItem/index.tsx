@@ -82,7 +82,7 @@ export const TodoItem = forwardRef<HTMLLIElement, TodoItemProps>(
             </div>
           </div>
           <span className={`text-xs text-${color} self-end`}>
-            {todo.time.toLocaleString('pt-BR')}
+            {new Date(todo.time).toLocaleString('pt-BR', {})}
           </span>
         </div>
       </li>

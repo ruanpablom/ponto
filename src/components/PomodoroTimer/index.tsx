@@ -61,7 +61,7 @@ export function PomodoroTimer(): JSX.Element {
   };
 
   const hours = Math.floor(
-    ((pomodoroTimer - elapsedTime) / 1000 / 60 / 60) % 60,
+    ((pomodoroTimer - elapsedTime) / 1000 / 60 / 60) % 24,
   )
     .toString()
     .padStart(2, '0');

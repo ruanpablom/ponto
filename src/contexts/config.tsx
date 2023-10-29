@@ -13,7 +13,9 @@ type ConfigContextData = {
 const ConfigContext = createContext<ConfigContextData>({} as ConfigContextData);
 
 function ConfigProvider({ children }: ConfigProviderProps): JSX.Element {
-  const [alertTime, setAlertTime] = useState<ConfigContextData['alertTime']>(0);
+  const [alertTime, setAlertTime] = useState<ConfigContextData['alertTime']>(
+    Number(localStorage.getItem('alertTime')),
+  );
 
   return (
     <ConfigContext.Provider value={{ alertTime, setAlertTime }}>

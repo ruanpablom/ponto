@@ -10,15 +10,24 @@ export function NavigationDrawer({
   isOpen,
   onClose,
 }: NavigationDrawerProps): JSX.Element {
-  const { setAlertTime } = useConfig();
+  const { alertTime, setAlertTime } = useConfig();
 
   const handleSetAlertTime = (el: ChangeEvent<HTMLInputElement>) => {
     const timeString = el.target.value;
     const timeArray = timeString.split(':');
-    return setAlertTime(
+    const alertTimeInSeconds =
+      Number(timeArray[0]) * 60 * 60 * 1000 + Number(timeArray[1]) * 60 * 1000;
+    localStorage.setItem('alertTime', alertTimeInSeconds.toString());
+    setAlertTime(
       Number(timeArray[0]) * 60 * 60 * 1000 + Number(timeArray[1]) * 60 * 1000,
     );
   };
+
+  const alertTimeString = `${String(
+    Math.floor((alertTime / 1000 / 60 / 60) % 24),
+  ).padStart(2, '0')}:${String(
+    Math.floor((alertTime / 1000 / 60) % 60),
+  ).padStart(2, '0')}`;
 
   return (
     <nav
@@ -41,6 +50,7 @@ export function NavigationDrawer({
             className=" bg-white p-1 text-black border-black"
             type="time"
             onChange={handleSetAlertTime}
+            defaultValue={alertTimeString}
           />
         </li>
       </ul>
