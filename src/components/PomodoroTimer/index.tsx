@@ -1,67 +1,19 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { IoIosRefreshCircle } from 'react-icons/io';
-import resolveConfig from 'tailwindcss/resolveConfig';
 import { useConfig } from '@/contexts/config';
-import tailwindConfig from '../../../tailwind.config';
 import alarm from '../../assets/alarm.wav';
 
-const { theme }: any = resolveConfig(tailwindConfig);
-
-// const POMODORO_TIME = 1000 * 60 * 25;
-const POMODORO_BREAK_TIMES: number[] = [
-  1000 * 60 * 5,
-  1000 * 60 * 10,
-  1000 * 60 * 15,
-  1000 * 60 * 30,
-];
-// const POMODORO_TIME = 1000 * 10 * 1;
-// const POMODORO_BREAK_TIMES: number[] = [1000 * 5, 1000 * 6, 1000 * 7, 1000 * 8];
-
-type PomodoroTimerProps = {
-  isBreak: boolean;
-  setIsBreak: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export function PomodoroTimer({
-  isBreak,
-  setIsBreak,
-}: PomodoroTimerProps): JSX.Element {
-  // const [isBreak, setIsBreak] = useState(false);
+export function PomodoroTimer(): JSX.Element {
   const { alertTime } = useConfig();
   const [isCounting, setIsCounting] = useState(false);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [pomodoroTimer, setPomodoroTimer] = useState<number>(alertTime);
-  const [_, setBreakCount] = useState<number>(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const changeBackgroundColor = useCallback((value: boolean) => {
-    /* tslint:disable-next-line */
-    (document.querySelector(':root') as HTMLElement).style.backgroundColor =
-      value
-        ? ((theme?.colors?.blue as RecursiveKeyValuePair<string, string>)[
-            '500'
-          ] as string)
-        : '#ba4949';
-  }, []);
-
   const reloadTimer = useCallback(() => {
-    setIsBreak(prev => {
-      if (prev) {
-        setPomodoroTimer(alertTime);
-      } else {
-        setBreakCount(prevCount => {
-          setPomodoroTimer(POMODORO_BREAK_TIMES[prevCount]);
-          return prevCount >= POMODORO_BREAK_TIMES.length - 1
-            ? 0
-            : prevCount + 1;
-        });
-      }
-      changeBackgroundColor(!prev);
-      return !prev;
-    });
-  }, [alertTime, changeBackgroundColor, setIsBreak]);
+    setPomodoroTimer(alertTime);
+  }, [alertTime]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -85,7 +37,6 @@ export function PomodoroTimer({
 
   useEffect(() => {
     setPomodoroTimer(alertTime);
-    console.info('alertTime', alertTime);
   }, [alertTime]);
 
   const handleStart = () => {
@@ -121,9 +72,7 @@ export function PomodoroTimer({
     .toString()
     .padStart(2, '0');
 
-  document.title = `${hours}:${minutes}:${seconds} ${
-    isBreak ? 'Break' : 'Focus'
-  }`;
+  document.title = `${hours}:${minutes}:${seconds}`;
 
   return (
     <div className="flex flex-col bg-white/10 p-10 rounded-xl gap-2 w-96">
@@ -132,12 +81,13 @@ export function PomodoroTimer({
         <track kind="captions" />
       </audio>
       <h1 className="text-7xl font-bold py-5">{`${hours}:${minutes}:${seconds}`}</h1>
-      <div id="buttons-container" className="flex flex-col items-center gap-4">
+      <div
+        id="buttons-container"
+        className="flex flex-col items-center gap-4 text-red-700"
+      >
         {isCounting ? (
           <button
-            className={`shadowButton w-full bg-white font-bold py-2 rounded-md hover:opacity-75 ${
-              isBreak ? 'text-blue-700' : 'text-red-700'
-            }`}
+            className="shadowButton w-full bg-white font-bold py-2 rounded-md hover:opacity-75"
             type="button"
             onClick={handlePause}
           >
@@ -145,13 +95,11 @@ export function PomodoroTimer({
           </button>
         ) : (
           <button
-            className={`shadowButton w-full bg-white font-bold py-2 rounded-md hover:opacity-75 ${
-              isBreak ? 'text-blue-700' : 'text-red-700'
-            }`}
+            className="shadowButton w-full bg-white font-bold py-2 rounded-md hover:opacity-75"
             type="button"
             onClick={handleStart}
           >
-            {isBreak ? 'BREAK' : 'FOCUS'}
+            FOCUS
           </button>
         )}
         <button type="button" onClick={handleReset}>

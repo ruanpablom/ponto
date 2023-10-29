@@ -4,7 +4,7 @@ import { TodoInput } from './TodoInput';
 import { TodoList } from './TodoList';
 
 type TodoReactProps = {
-  color: 'blue-700' | 'red-700';
+  color?: 'blue-700' | 'red-700';
 };
 
 export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
