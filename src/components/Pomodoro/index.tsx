@@ -8,7 +8,9 @@ export function Pomodoro(): JSX.Element {
       className="w-96 flex flex-col gap-4 items-center"
     >
       <PomodoroTimer />
-      <TodoReact />
+      <div className="w-full">
+        <TodoReact />
+      </div>
     </div>
   );
 }

@@ -91,7 +91,7 @@ export function PomodoroTimer(): JSX.Element {
             type="button"
             onClick={handlePause}
           >
-            PAUSE
+            PAUSAR
           </button>
         ) : (
           <button
@@ -99,7 +99,7 @@ export function PomodoroTimer(): JSX.Element {
             type="button"
             onClick={handleStart}
           >
-            FOCUS
+            INICIAR
           </button>
         )}
         <button type="button" onClick={handleReset}>

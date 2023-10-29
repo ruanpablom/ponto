@@ -46,7 +46,7 @@ export function TodoInput({
         className={`shadowButton bg-white font-bold text-sm py-1 px-2 rounded-md text-${color} h-fit`}
         onClick={insertTodoList}
       >
-        INSERT
+        INSERIR
       </button>
     </div>
   );
