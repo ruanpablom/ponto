@@ -57,20 +57,33 @@ export const TodoItem = forwardRef<HTMLLIElement, TodoItemProps>(
         {...props}
         ref={ref}
       >
-        <span className={`font-bold text-${color} text-left`}>
-          {todo.content}
-        </span>
-        <div id="buttons-container" className="ml-auto flex gap-2 items-center">
-          <button type="button" onClick={concludeTodo}>
-            {todo.concluded ? (
-              <GoCheckCircle size={20} className={`${textVariants[color]}`} />
-            ) : (
-              <GoCircle size={20} className={`text-${color}`} />
-            )}
-          </button>
-          <button type="button" onClick={deleteTodo}>
-            <GoTrash size={20} className={`text-${color}`} />
-          </button>
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex">
+            <span className={`font-bold text-${color} text-left`}>
+              {todo.content}
+            </span>
+            <div
+              id="buttons-container"
+              className="ml-auto flex gap-2 items-center"
+            >
+              <button type="button" onClick={concludeTodo}>
+                {todo.concluded ? (
+                  <GoCheckCircle
+                    size={20}
+                    className={`${textVariants[color]}`}
+                  />
+                ) : (
+                  <GoCircle size={20} className={`text-${color}`} />
+                )}
+              </button>
+              <button type="button" onClick={deleteTodo}>
+                <GoTrash size={20} className={`text-${color}`} />
+              </button>
+            </div>
+          </div>
+          <span className={`text-xs text-${color} self-end`}>
+            {todo.time.toLocaleString('pt-BR')}
+          </span>
         </div>
       </li>
     );

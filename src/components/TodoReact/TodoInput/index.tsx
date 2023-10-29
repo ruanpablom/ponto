@@ -11,7 +11,7 @@ export function TodoInput({
   setTodoList,
   color = 'red-700',
 }: TodoInputProps): JSX.Element {
-  const todoInputRef = useRef<HTMLInputElement>(null);
+  const todoInputRef = useRef<HTMLTextAreaElement>(null);
 
   const insertTodoList = () => {
     if (todoInputRef.current) {
@@ -22,6 +22,7 @@ export function TodoInput({
           id: uuidv4(),
           content: todoContent,
           concluded: false,
+          time: new Date(),
         };
 
         setTodoList(todoList => [...todoList, todo]);
@@ -31,10 +32,13 @@ export function TodoInput({
   };
 
   return (
-    <div id="todo-input-container" className="flex gap-2 h-10">
-      <input
-        className={`w-full h-fit text-xl px-2 bg-white text-${color} font-bold rounded border-2 border-white outline-none mt-[1px]`}
-        type="text"
+    <div
+      id="todo-input-container"
+      className="flex gap-2 h-fit mb-2 items-center"
+    >
+      <textarea
+        className={`w-full text-xl px-2 bg-white text-${color} font-bold rounded border-2 border-white outline-none mt-[1px]`}
+        rows={4}
         ref={todoInputRef}
       />
       <button
