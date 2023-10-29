@@ -2,12 +2,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { IoIosRefreshCircle } from 'react-icons/io';
 import resolveConfig from 'tailwindcss/resolveConfig';
+import { useConfig } from '@/contexts/config';
 import tailwindConfig from '../../../tailwind.config';
 import alarm from '../../assets/alarm.wav';
 
 const { theme }: any = resolveConfig(tailwindConfig);
 
-const POMODORO_TIME = 1000 * 60 * 25;
+// const POMODORO_TIME = 1000 * 60 * 25;
 const POMODORO_BREAK_TIMES: number[] = [
   1000 * 60 * 5,
   1000 * 60 * 10,
@@ -27,10 +28,11 @@ export function PomodoroTimer({
   setIsBreak,
 }: PomodoroTimerProps): JSX.Element {
   // const [isBreak, setIsBreak] = useState(false);
+  const { alertTime } = useConfig();
   const [isCounting, setIsCounting] = useState(false);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
-  const [pomodoroTimer, setPomodoroTimer] = useState<number>(POMODORO_TIME);
+  const [pomodoroTimer, setPomodoroTimer] = useState<number>(alertTime);
   const [_, setBreakCount] = useState<number>(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -47,7 +49,7 @@ export function PomodoroTimer({
   const reloadTimer = useCallback(() => {
     setIsBreak(prev => {
       if (prev) {
-        setPomodoroTimer(POMODORO_TIME);
+        setPomodoroTimer(alertTime);
       } else {
         setBreakCount(prevCount => {
           setPomodoroTimer(POMODORO_BREAK_TIMES[prevCount]);
@@ -59,7 +61,7 @@ export function PomodoroTimer({
       changeBackgroundColor(!prev);
       return !prev;
     });
-  }, [changeBackgroundColor, setIsBreak]);
+  }, [alertTime, changeBackgroundColor, setIsBreak]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -67,7 +69,6 @@ export function PomodoroTimer({
     if (isCounting) {
       interval = setInterval(() => {
         setElapsedTime(prev => {
-          console.info(pomodoroTimer - prev, pomodoroTimer, prev);
           if (pomodoroTimer - prev < 1000) {
             setIsCounting(false);
             reloadTimer();
@@ -81,6 +82,11 @@ export function PomodoroTimer({
 
     return () => clearInterval(interval);
   }, [isCounting, pomodoroTimer, reloadTimer, startTime]);
+
+  useEffect(() => {
+    setPomodoroTimer(alertTime);
+    console.info('alertTime', alertTime);
+  }, [alertTime]);
 
   const handleStart = () => {
     if (!isCounting) {
@@ -103,6 +109,11 @@ export function PomodoroTimer({
     setElapsedTime(0);
   };
 
+  const hours = Math.floor(
+    ((pomodoroTimer - elapsedTime) / 1000 / 60 / 60) % 60,
+  )
+    .toString()
+    .padStart(2, '0');
   const minutes = Math.floor(((pomodoroTimer - elapsedTime) / 1000 / 60) % 60)
     .toString()
     .padStart(2, '0');
@@ -110,15 +121,17 @@ export function PomodoroTimer({
     .toString()
     .padStart(2, '0');
 
-  document.title = `${minutes}:${seconds} ${isBreak ? 'Break' : 'Focus'}`;
+  document.title = `${hours}:${minutes}:${seconds} ${
+    isBreak ? 'Break' : 'Focus'
+  }`;
 
   return (
-    <div className="flex flex-col bg-white/10 p-10 rounded-xl gap-2 w-80">
+    <div className="flex flex-col bg-white/10 p-10 rounded-xl gap-2 w-96">
       <h1 className="text-3xl font-bold">POMODORO</h1>
       <audio ref={audioRef} src={alarm} autoPlay loop>
         <track kind="captions" />
       </audio>
-      <h1 className="text-7xl font-bold py-5">{`${minutes}:${seconds}`}</h1>
+      <h1 className="text-7xl font-bold py-5">{`${hours}:${minutes}:${seconds}`}</h1>
       <div id="buttons-container" className="flex flex-col items-center gap-4">
         {isCounting ? (
           <button

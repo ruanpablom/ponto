@@ -1,0 +1,7 @@
+.icon path {
+  stroke: white;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+  color-scheme: light;
+}

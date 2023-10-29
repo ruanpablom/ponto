@@ -1,12 +1,12 @@
 {
-  "name": "pomodoro",
+  "name": "ponto",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:ocean": "tsc && vite build --base=/pomodoro/",
+    "build:ocean": "tsc && vite build --base=/ponto/",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
