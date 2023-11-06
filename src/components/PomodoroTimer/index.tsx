@@ -4,7 +4,7 @@ import { useConfig } from '@/contexts/config';
 import alarm from '../../assets/alarm.wav';
 
 export function PomodoroTimer(): JSX.Element {
-  const { alertTime } = useConfig();
+  const { alertTime, alertVolume } = useConfig();
   const [isCounting, setIsCounting] = useState(false);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
@@ -24,6 +24,7 @@ export function PomodoroTimer(): JSX.Element {
           if (pomodoroTimer - prev < 1000) {
             setIsCounting(false);
             reloadTimer();
+            audioRef!.current!.volume = alertVolume;
             audioRef?.current?.play().catch(error => console.info(error));
             return 0;
           }
@@ -33,7 +34,7 @@ export function PomodoroTimer(): JSX.Element {
     }
 
     return () => clearInterval(interval);
-  }, [isCounting, pomodoroTimer, reloadTimer, startTime]);
+  }, [isCounting, pomodoroTimer, reloadTimer, startTime, alertVolume]);
 
   useEffect(() => {
     setPomodoroTimer(alertTime);
@@ -58,6 +59,7 @@ export function PomodoroTimer(): JSX.Element {
     setIsCounting(false);
     setStartTime(null);
     setElapsedTime(0);
+    audioRef?.current?.pause();
   };
 
   const hours = Math.floor(

@@ -10,7 +10,7 @@ export function NavigationDrawer({
   isOpen,
   onClose,
 }: NavigationDrawerProps): JSX.Element {
-  const { alertTime, setAlertTime } = useConfig();
+  const { alertTime, setAlertTime, alertVolume, setAlertVolume } = useConfig();
 
   const handleSetAlertTime = (el: ChangeEvent<HTMLInputElement>) => {
     const timeString = el.target.value;
@@ -21,6 +21,20 @@ export function NavigationDrawer({
     setAlertTime(
       Number(timeArray[0]) * 60 * 60 * 1000 + Number(timeArray[1]) * 60 * 1000,
     );
+  };
+
+  const handleSetVolumeAlertTime = (el: ChangeEvent<HTMLInputElement>) => {
+    let inputValue = Number(el.target.value);
+    if (inputValue < 0) {
+      el.target.value = '0';
+      inputValue = 0;
+    } else if (inputValue > 100) {
+      el.target.value = '100';
+      inputValue = 100;
+    }
+    const alertVolumePercent = inputValue / 100;
+    localStorage.setItem('alertVolume', alertVolumePercent.toString());
+    setAlertVolume(alertVolumePercent);
   };
 
   const alertTimeString = `${String(
@@ -51,6 +65,17 @@ export function NavigationDrawer({
             type="time"
             onChange={handleSetAlertTime}
             defaultValue={alertTimeString}
+          />
+        </li>
+        <li className="text-center flex flex-col">
+          <span>VOLUME ALERTA</span>
+          <input
+            className=" bg-white p-1 text-black border-black"
+            type="number"
+            min="1"
+            max="100"
+            onChange={handleSetVolumeAlertTime}
+            defaultValue={alertVolume * 100}
           />
         </li>
       </ul>
