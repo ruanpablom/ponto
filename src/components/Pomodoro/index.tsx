@@ -5,7 +5,7 @@ export function Pomodoro(): JSX.Element {
   return (
     <div
       id="pomodoro-container"
-      className="w-80 flex flex-col gap-4 items-center"
+      className="w-72 flex flex-col gap-4 items-center"
     >
       <PomodoroTimer />
       <div className="w-full">
