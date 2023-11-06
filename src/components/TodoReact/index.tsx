@@ -38,8 +38,10 @@ export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
     <div id="todo-container" className="flex flex-col w-full gap-2">
       <TodoInput color={color} setTodoList={setTodoList} />
       <div className="flex gap-2 justify-between">
-        <div className="flex gap-1">
-          <label htmlFor="date">De:</label>
+        <div className="flex flex-col gap-1">
+          <label className="self-start" htmlFor="date">
+            De:
+          </label>
           <input
             id="intial-date"
             className="bg-white text-black pl-1 pr-1"
@@ -48,8 +50,10 @@ export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
             onChange={el => setInitialDate(new Date(el.target.value))}
           />
         </div>
-        <div className="flex gap-1">
-          <label htmlFor="date">Até:</label>
+        <div className="flex flex-col gap-1">
+          <label className="self-start" htmlFor="date">
+            Até:
+          </label>
           <input
             id="final-date"
             className="bg-white text-black pl-1 pr-1"

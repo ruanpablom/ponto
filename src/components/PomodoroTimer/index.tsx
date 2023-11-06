@@ -75,12 +75,12 @@ export function PomodoroTimer(): JSX.Element {
   document.title = `${hours}:${minutes}:${seconds}`;
 
   return (
-    <div className="flex flex-col bg-white/10 p-10 rounded-xl gap-2 w-96">
+    <div className="flex flex-col bg-white/10 p-4 rounded-xl gap-2 w-full">
       <h1 className="text-3xl font-bold">POMODORO</h1>
       <audio ref={audioRef} src={alarm} autoPlay loop>
         <track kind="captions" />
       </audio>
-      <h1 className="text-7xl font-bold py-5">{`${hours}:${minutes}:${seconds}`}</h1>
+      <h1 className="text-4xl font-bold py-5">{`${hours}:${minutes}:${seconds}`}</h1>
       <div
         id="buttons-container"
         className="flex flex-col items-center gap-4 text-red-700"
