@@ -44,7 +44,7 @@ export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
           </label>
           <input
             id="intial-date"
-            className="bg-white text-black pl-1 pr-1"
+            className="bg-white text-black pl-1 pr-1 w-32"
             type="date"
             defaultValue={initialDate?.toISOString().split('T')[0]}
             onChange={el => setInitialDate(new Date(el.target.value))}
@@ -56,7 +56,7 @@ export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
           </label>
           <input
             id="final-date"
-            className="bg-white text-black pl-1 pr-1"
+            className="bg-white text-black pl-1 pr-1 w-32"
             type="date"
             defaultValue={finalDate?.toISOString().split('T')[0]}
             onChange={el => setFinalDate(new Date(el.target.value))}
