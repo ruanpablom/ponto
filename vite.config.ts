@@ -38,8 +38,8 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     theme_color: '#171717',
     background_color: '#f0e7db',
     display: 'standalone',
-    scope: '/',
-    start_url: '/',
+    scope: '/ponto',
+    start_url: '/ponto',
     orientation: 'portrait',
   },
 };
