@@ -39,7 +39,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     background_color: '#f0e7db',
     display: 'standalone',
     scope: '/ponto',
-    start_url: '/',
+    start_url: '/ponto',
     orientation: 'portrait',
   },
 };
