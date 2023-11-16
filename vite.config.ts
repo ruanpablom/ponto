@@ -5,6 +5,8 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 const manifestForPlugIn: Partial<VitePWAOptions> = {
   registerType: 'prompt',
   includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+  filename: 'service-worker.js',
+  injectRegister: 'script',
   manifest: {
     name: 'Ponto RPMDev',
     short_name: 'Ponto',

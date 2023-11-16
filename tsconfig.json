@@ -20,8 +20,13 @@
       "@/*": [
         "src/*"
       ],
+      "virtual:pwa-register": ["node_modules/vite-plugin-pwa"]
     }
   },
-  "include": ["src"],
+  "include": [
+    "src", 
+    "./**/*",
+    "node_modules/vite-plugin-pwa/client.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
