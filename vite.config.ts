@@ -40,10 +40,11 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
         purpose: 'any maskable',
       },
     ],
+
     theme_color: '#ba4949',
     background_color: '#ba4949',
     display: 'standalone',
-    scope: '/ponto/',
+    scope: '/',
     start_url: '/ponto',
     orientation: 'portrait',
   },
