@@ -1,6 +1,8 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
+    navigator.serviceWorker.register('/ponto/service-worker.js', {
+      scope: '/ponto',
+    });
 
     console.info('RUAN PABLO');
     if (Notification.permission === 'default') {
