@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/ponto/service-worker.js', {
+    navigator.serviceWorker.register('/service-worker.js', {
       scope: '/ponto',
     });
 
