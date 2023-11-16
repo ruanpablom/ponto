@@ -17,9 +17,12 @@ export function PomodoroTimer(): JSX.Element {
 
   const sendNotification = useCallback(() => {
     if (Notification.permission === 'granted') {
-      console.info('Sending notification');
       // eslint-disable-next-line no-new
-      new Notification('Hi there!');
+      new Notification('PONTO', {
+        icon: '/favicon.ico',
+        body: 'O tempo acabou!',
+        actions: [{ action: 'open', title: 'Abrir' }],
+      });
     }
   }, []);
 
