@@ -29,7 +29,6 @@ export function TodoReact({ color = 'red-700' }: TodoReactProps): JSX.Element {
       const time = new Date(todo.time).getTime();
       const initialD = new Date(initialDate).getTime();
       const finalD = new Date(finalDate).getTime();
-      console.info(initialD, finalD, time);
       return initialD < time && time < finalD;
     });
   }, [finalDate, initialDate, todoList]);

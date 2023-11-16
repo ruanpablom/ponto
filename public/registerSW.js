@@ -4,10 +4,9 @@ if ('serviceWorker' in navigator) {
       scope: '/ponto/',
     });
 
-    console.info('RUAN PABLO');
+    console.info('RUAN PABLO Medeiros');
     if (Notification.permission === 'default') {
       Notification.requestPermission();
-      console.info('Notification.requestPermission()');
     }
   });
 }
