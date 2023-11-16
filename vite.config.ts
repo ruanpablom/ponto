@@ -6,6 +6,12 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
   workbox: {
     globPatterns: ['**/*'],
     navigateFallback: '/ponto',
+    runtimeCaching: [
+      {
+        urlPattern: /^ponto/i,
+        handler: 'CacheFirst',
+      },
+    ],
   },
   includeAssets: [
     'favicon.ico',
