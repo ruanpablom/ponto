@@ -18,9 +18,8 @@ export function PomodoroTimer(): JSX.Element {
   const sendNotification = useCallback(() => {
     if (Notification.permission === 'granted') {
       // eslint-disable-next-line no-new
-      new Notification('PONTO', {
-        body: 'Reinicie o cronômetro!',
-      });
+      console.info('Sending notification');
+      const notification = new Notification('Hi there!');
     }
   }, []);
 
