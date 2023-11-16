@@ -18,7 +18,9 @@ export function PomodoroTimer(): JSX.Element {
   const sendNotification = useCallback(() => {
     if (Notification.permission === 'granted') {
       // eslint-disable-next-line no-new
+      console.info('Notification granted');
       navigator.serviceWorker.ready.then(registration => {
+        console.info('Notification send');
         registration.showNotification('Ponto', {
           body: 'Adicione uma nova atividade e reinicie o timer.',
           icon: '/favicon-32x32',
