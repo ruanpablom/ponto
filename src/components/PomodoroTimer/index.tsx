@@ -78,7 +78,7 @@ export function PomodoroTimer(): JSX.Element {
 
   return (
     <div className="flex flex-col bg-white/10 p-4 rounded-xl gap-2 w-full">
-      <h1 className="text-3xl font-bold">POMODORO</h1>
+      <h1 className="text-3xl font-bold">PONTO</h1>
       <audio ref={audioRef} src={alarm} autoPlay loop>
         <track kind="captions" />
       </audio>
