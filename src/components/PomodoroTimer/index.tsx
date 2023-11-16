@@ -18,7 +18,7 @@ export function PomodoroTimer(): JSX.Element {
   const sendNotification = useCallback(() => {
     if (Notification.permission === 'granted') {
       // eslint-disable-next-line no-new
-      console.info('Notification granted');
+      console.info(navigator.serviceWorker);
       navigator.serviceWorker.ready.then(registration => {
         console.info('Notification send');
         registration.showNotification('Ponto', {
