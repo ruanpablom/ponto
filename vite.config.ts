@@ -3,12 +3,15 @@ import react from '@vitejs/plugin-react';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 const manifestForPlugIn: Partial<VitePWAOptions> = {
-  registerType: 'autoUpdate',
   workbox: {
-    clientsClaim: true,
-    skipWaiting: true,
+    globPatterns: ['**/*'],
   },
-  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+  includeAssets: [
+    'favicon.ico',
+    'apple-touch-icon.png',
+    'masked-icon.svg',
+    '**/*',
+  ],
   manifest: {
     name: 'Ponto RPMDev',
     short_name: 'Ponto',
@@ -39,10 +42,10 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
         purpose: 'any maskable',
       },
     ],
-    theme_color: '#171717',
+    theme_color: '#ba4949',
     background_color: '#ba4949',
     display: 'standalone',
-    scope: '/ponto',
+    scope: '/ponto/',
     start_url: '/ponto',
     orientation: 'portrait',
   },
