@@ -23,8 +23,9 @@ export function PomodoroTimer(): JSX.Element {
         .register('/ponto/registerSW.js')
         .then(registration => {
           registration.showNotification('Ponto', {
+            image: '/ponto/favicon.ico',
             body: 'Adicione uma nova atividade e reinicie o timer.',
-            icon: '/favicon.ico',
+            icon: '/ponto/favicon.ico',
           });
         });
 
