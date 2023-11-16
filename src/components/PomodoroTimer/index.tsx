@@ -15,6 +15,15 @@ export function PomodoroTimer(): JSX.Element {
     setPomodoroTimer(alertTime);
   }, [alertTime]);
 
+  const sendNotification = useCallback(() => {
+    if (Notification.permission === 'granted') {
+      // eslint-disable-next-line no-new
+      new Notification('PONTO', {
+        body: 'Reinicie o cronômetro!',
+      });
+    }
+  }, []);
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -26,6 +35,7 @@ export function PomodoroTimer(): JSX.Element {
             reloadTimer();
             audioRef!.current!.volume = alertVolume;
             audioRef?.current?.play().catch(error => console.info(error));
+            sendNotification();
             return 0;
           }
           return Date.now() - startTime!;
@@ -34,7 +44,14 @@ export function PomodoroTimer(): JSX.Element {
     }
 
     return () => clearInterval(interval);
-  }, [isCounting, pomodoroTimer, reloadTimer, startTime, alertVolume]);
+  }, [
+    isCounting,
+    pomodoroTimer,
+    reloadTimer,
+    startTime,
+    alertVolume,
+    sendNotification,
+  ]);
 
   useEffect(() => {
     setPomodoroTimer(alertTime);
