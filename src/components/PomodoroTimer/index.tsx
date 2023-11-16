@@ -15,17 +15,16 @@ export function PomodoroTimer(): JSX.Element {
     setPomodoroTimer(alertTime);
   }, [alertTime]);
 
-  const sendNotification = useCallback(() => {
+  const sendNotification = useCallback(async () => {
     if (Notification.permission === 'granted') {
       // eslint-disable-next-line no-new
-      console.info(navigator.serviceWorker.ready);
-      navigator.serviceWorker.ready.then(registration => {
-        console.info('Notification send');
-        registration.showNotification('Ponto', {
-          body: 'Adicione uma nova atividade e reinicie o timer.',
-          // icon: '/favicon-32x32',
-        });
+      const registration = await navigator.serviceWorker.ready;
+
+      registration.showNotification('Ponto', {
+        body: 'Adicione uma nova atividade e reinicie o timer.',
+        // icon: '/favicon-32x32',
       });
+      console.info('Notification sent');
     }
   }, []);
 
