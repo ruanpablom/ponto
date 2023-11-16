@@ -1,7 +1,7 @@
-import { precacheAndRoute } from 'workbox-precaching';
+import { precacheAndRoute, addRoute } from 'workbox-precaching';
 
 precacheAndRoute(self.__WB_MANIFEST);
-precacheAndRoute('ponto');
+addRoute('ponto');
 
 if (Notification.permission === 'default') {
   Notification.requestPermission();
