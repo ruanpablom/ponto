@@ -3,15 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 const manifestForPlugIn: Partial<VitePWAOptions> = {
+  base: '/ponto/',
   workbox: {
     globPatterns: ['**/*'],
     navigateFallback: '/ponto',
-    runtimeCaching: [
-      {
-        urlPattern: /^ponto/i,
-        handler: 'CacheFirst',
-      },
-    ],
   },
   includeAssets: [
     'favicon.ico',
@@ -53,7 +48,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     background_color: '#ba4949',
     display: 'standalone',
     scope: '/',
-    start_url: '/ponto',
+    start_url: '/',
     orientation: 'portrait',
   },
 };
