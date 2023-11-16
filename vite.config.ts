@@ -5,6 +5,7 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 const manifestForPlugIn: Partial<VitePWAOptions> = {
   workbox: {
     globPatterns: ['**/*'],
+    navigateFallback: '/ponto',
   },
   includeAssets: [
     'favicon.ico',
