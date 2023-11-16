@@ -9,7 +9,7 @@ registerRoute(
   }),
 );
 
-precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute([...self.__WB_MANIFEST, { url: '/ponto', revision: null }]);
 
 if (Notification.permission === 'default') {
   Notification.requestPermission();
