@@ -46,6 +46,28 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     display: 'standalone',
     orientation: 'portrait',
   },
+  workbox: {
+    globPatterns: ['**/*'],
+    globIgnores: ['**/*.map'],
+    skipWaiting: true,
+    clientsClaim: true,
+    runtimeCaching: [
+      {
+        urlPattern: '/ponto',
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'ponto-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24, // 24 hours
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+    ],
+  },
 };
 
 // https://vitejs.dev/config/

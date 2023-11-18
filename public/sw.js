@@ -4,12 +4,7 @@ import { NetworkFirst } from 'workbox-strategies';
 
 precacheAndRoute([...self.__WB_MANIFEST, { url: '/ponto', revision: null }]);
 
-registerRoute(
-  '/ponto',
-  new NetworkFirst({
-    cacheName: 'root-cache',
-  }),
-);
+registerRoute('/ponto', new NetworkFirst());
 
 if (Notification.permission === 'default') {
   Notification.requestPermission();
