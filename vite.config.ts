@@ -18,25 +18,25 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     description: 'Um app para registrar o ponto',
     icons: [
       {
-        src: '/ponto/android-chrome-192x192.png',
+        src: 'android-chrome-192x192.png',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'favicon',
       },
       {
-        src: '/ponto/android-chrome-512x512.png',
+        src: 'android-chrome-512x512.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'favicon',
       },
       {
-        src: '/ponto/apple-touch-icon.png',
+        src: 'apple-touch-icon.png',
         sizes: '180x180',
         type: 'image/png',
         purpose: 'apple touch icon',
       },
       {
-        src: '/ponto/maskable_icon.png',
+        src: 'maskable_icon.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any maskable',
