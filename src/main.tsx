@@ -15,4 +15,12 @@ const updateSW = registerSW({
   },
 });
 
+if (
+  'Notification' in window &&
+  (Notification.permission === 'default' ||
+    Notification.permission === 'denied')
+) {
+  Notification.requestPermission();
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
