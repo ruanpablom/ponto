@@ -41,34 +41,17 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
         type: 'image/png',
         purpose: 'any maskable',
       },
+      {
+        src: 'favicon.ico',
+        type: 'image/x-icon',
+        purpose: 'any maskable',
+      },
     ],
 
     theme_color: '#ba4949',
     background_color: '#ba4949',
     display: 'standalone',
     orientation: 'portrait',
-  },
-  workbox: {
-    globPatterns: ['**/*'],
-    globIgnores: ['**/*.map'],
-    skipWaiting: true,
-    clientsClaim: true,
-    runtimeCaching: [
-      {
-        urlPattern: '/ponto',
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'ponto-cache',
-          expiration: {
-            maxEntries: 10,
-            maxAgeSeconds: 60 * 60 * 24, // 24 hours
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-    ],
   },
 };
 
