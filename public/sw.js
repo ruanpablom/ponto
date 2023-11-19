@@ -2,11 +2,7 @@ import { precacheAndRoute } from 'workbox-precaching';
 
 precacheAndRoute([...self.__WB_MANIFEST]);
 
-// registerRoute('/ponto', new NetworkFirst());
-
-if (
-  Notification.permission === 'default' ||
-  Notification.permission === 'denied'
-) {
-  Notification.requestPermission();
-}
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  event.waitUntil(clients.openWindow('https://rpmdev.com.br/ponto'));
+});

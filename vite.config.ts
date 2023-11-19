@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 const manifestForPlugIn: Partial<VitePWAOptions> = {
-  // strategies: 'injectManifest',
+  strategies: 'injectManifest',
   manifest: {
     name: 'Ponto RPMDev',
     short_name: 'Ponto',
