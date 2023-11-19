@@ -20,6 +20,7 @@ if (
   (Notification.permission === 'default' ||
     Notification.permission === 'denied')
 ) {
+  console.info('Requesting notification permission');
   Notification.requestPermission();
 }
 
