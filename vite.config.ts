@@ -14,7 +14,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     name: 'Ponto RPMDev',
     short_name: 'Ponto',
     scope: '/ponto/',
-    start_url: '/',
+    start_url: '/ponto/',
     description: 'Um app para registrar o ponto',
     icons: [
       {
