@@ -19,14 +19,12 @@ export function PomodoroTimer(): JSX.Element {
     if (Notification.permission === 'granted') {
       // eslint-disable-next-line no-new
 
-      navigator.serviceWorker
-        .register('/ponto/registerSW.js')
-        .then(registration => {
-          registration.showNotification('Ponto', {
-            body: 'Adicione uma nova atividade e reinicie o timer.',
-            icon: '/ponto/favicon.ico',
-          });
+      navigator.serviceWorker.register('/ponto/sw.js').then(registration => {
+        registration.showNotification('Ponto', {
+          body: 'Adicione uma nova atividade e reinicie o timer.',
+          icon: '/ponto/favicon.ico',
         });
+      });
 
       console.info('Notification sent');
     }
